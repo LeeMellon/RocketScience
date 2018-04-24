@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RocketScience.Models;
 
 namespace RocketScience.Controllers
 {
@@ -13,23 +14,33 @@ namespace RocketScience.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult GetFuel(string name, float tonnage, string destinationName, float finalSpeed)
         {
-            ViewData["Message"] = "Your application description page.";
+            Rocket newRocket = new Rocket
+            {
+                Name = name,
+                Tonnage = tonnage,
+                FinalSpeed = finalSpeed,
+                DestinationName = destinationName
+            };
 
-            return View();
+            ViewBag.fuelResult = newRocket.GetFuel();
+
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Contact()
+        public IActionResult getCrew(double days, double tasks)
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            Rocket newRocket = new Rocket { };
+            var result = newRocket.GetCrew(days, tasks);
+            return View(result);
         }
 
-        public IActionResult Error()
+        public IActionResult getDistance(double startLat, double startLong, double endLat, double endLong)
         {
-            return View();
+            Rocket newRocket = new Rocket { };
+            var result = newRocket.GetDistance(startLat, startLong, endLat, endLong);
+            return View(result);
         }
     }
 }

@@ -1,7 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RocketScience.Models;
+using System;
 using System.Linq;
+
+
 namespace RocketScience.Tests
+   
 {
     [TestClass]
     public class RocketTests
@@ -41,6 +45,41 @@ namespace RocketScience.Tests
 
         }
 
+        [TestMethod]
+        public void GetCrew_Double()
+        {
+            //Arrange
+            Rocket newRocket = new Rocket();
+            var days = 2;
+            var tasks = 300;
+
+            //Act
+            var result = newRocket.GetCrew(days, tasks);
+
+
+            //Assert
+            Assert.AreEqual(3, result);
+
+        }
+
+        [TestMethod]
+        public void GetDistance_Double()
+        {
+            //Arrange
+            Rocket newRocket = new Rocket();
+            var StartLat = 28.533333;
+            var StartLong = -80.566667;
+            var EndLat = 45.483333;
+            var EndLong = -120.483333;
+
+            //Act
+            var result = (newRocket.GetDistance(StartLat, StartLong, EndLat, EndLong));
+
+
+            //Assert
+            Assert.AreEqual(2140, result);
+
+        }
 
     }
 }
